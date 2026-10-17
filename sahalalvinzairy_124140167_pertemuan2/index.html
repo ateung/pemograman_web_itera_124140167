@@ -1,0 +1,96 @@
+﻿<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f5f4ed">
+  <meta name="description" content="Sela, dashboard sederhana untuk mengatur tugas dan ritme belajar mahasiswa.">
+  <title>Sela — Ruang Kuliah</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#beranda" aria-label="Sela, kembali ke beranda">
+      <span class="brand-mark" aria-hidden="true">s.</span>
+      <span class="brand-copy"><strong>Sela</strong><span>ruang kuliahmu</span></span>
+    </a>
+    <div class="topbar-right">
+      <span class="today-label" id="today-label">Hari ini</span>
+      <span class="student-chip"><span class="avatar">S</span> Sahal · 124140167</span>
+    </div>
+  </header>
+  <main class="page-shell" id="beranda">
+    <section class="welcome-panel" aria-labelledby="welcome-title">
+      <div class="welcome-copy">
+        <p class="eyebrow"><span class="eyebrow-dot"></span> DASHBOARD MAHASISWA · ITERA</p>
+        <h1 id="welcome-title">Halo, Sahal <span aria-hidden="true">✳</span></h1>
+        <p class="welcome-description">Satu hal pada satu waktu. Kamu pasti bisa menyelesaikannya.</p>
+      </div>
+      <div class="weather-card" aria-live="polite">
+        <span class="weather-symbol" id="weather-symbol" aria-hidden="true">☀</span>
+        <div class="weather-copy">
+          <span class="weather-place">SUASANA DI ITERA</span>
+          <strong id="weather-value">Mengambil cuaca…</strong>
+          <span id="weather-detail">Lampung Selatan</span>
+        </div>
+        <button class="icon-button weather-refresh" id="refresh-weather" type="button" aria-label="Muat ulang cuaca" title="Muat ulang cuaca">↻</button>
+      </div>
+      <div class="hero-decoration decoration-one" aria-hidden="true"></div>
+      <div class="hero-decoration decoration-two" aria-hidden="true"></div>
+    </section>
+    <section class="stats-grid" aria-label="Ringkasan agenda">
+      <article class="stat-card stat-total"><span class="stat-icon" aria-hidden="true">▤</span><div><span class="stat-label">Semua agenda</span><strong id="stat-total">0</strong></div><span class="stat-caption">tersimpan</span></article>
+      <article class="stat-card stat-open"><span class="stat-icon" aria-hidden="true">◷</span><div><span class="stat-label">Perlu dikerjakan</span><strong id="stat-open">0</strong></div><span class="stat-caption">tetap bertahap</span></article>
+      <article class="stat-card stat-done"><span class="stat-icon" aria-hidden="true">✓</span><div><span class="stat-label">Sudah selesai</span><strong id="stat-done">0</strong></div><span class="stat-caption">keren, Sahal!</span></article>
+    </section>
+    <div class="content-grid">
+      <section class="agenda-panel" aria-labelledby="agenda-title">
+        <div class="section-heading">
+          <div><p class="eyebrow eyebrow-ink">RUANG KERJA</p><h2 id="agenda-title">Agenda kuliah</h2></div>
+          <label class="search-box"><span aria-hidden="true">⌕</span><span class="visually-hidden">Cari agenda</span><input id="search-input" type="search" placeholder="Cari tugas atau mata kuliah…" autocomplete="off"></label>
+        </div>
+        <div class="filter-row" role="group" aria-label="Filter agenda">
+          <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">Semua <span id="filter-all-count">0</span></button>
+          <button class="filter-button" type="button" data-filter="open" aria-pressed="false">Berjalan <span id="filter-open-count">0</span></button>
+          <button class="filter-button" type="button" data-filter="done" aria-pressed="false">Selesai <span id="filter-done-count">0</span></button>
+        </div>
+        <div class="task-list" id="task-list" aria-live="polite" aria-busy="false"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <span class="empty-illustration" aria-hidden="true">✳</span>
+          <h3 id="empty-title">Ruangmu masih kosong</h3>
+          <p id="empty-description">Tambahkan agenda pertama dan mulai atur ritme belajarmu.</p>
+          <button class="text-button" id="empty-add-button" type="button">+ Buat agenda</button>
+        </div>
+        <p class="storage-hint"><span aria-hidden="true">◉</span> Agenda tersimpan otomatis di browser ini.</p>
+      </section>
+      <aside class="side-column">
+        <section class="editor-card" aria-labelledby="editor-title">
+          <div class="editor-heading"><span class="editor-icon" aria-hidden="true">＋</span><div><p class="eyebrow eyebrow-ink">CATAT &amp; RENCANAKAN</p><h2 id="editor-title">Agenda baru</h2></div></div>
+          <form id="task-form">
+            <label class="field-label" for="task-title">Nama tugas <span class="required-mark">*</span></label>
+            <input class="text-input" id="task-title" name="title" type="text" placeholder="Contoh: Baca materi JavaScript" minlength="3" maxlength="100" required>
+            <div class="field-pair">
+              <div><label class="field-label" for="task-course">Mata kuliah</label><input class="text-input" id="task-course" name="course" type="text" placeholder="Contoh: PAW" maxlength="40"></div>
+              <div><label class="field-label" for="task-due-date">Tenggat</label><input class="text-input" id="task-due-date" name="dueDate" type="date"></div>
+            </div>
+            <label class="field-label" for="task-priority">Prioritas</label>
+            <select class="text-input select-input" id="task-priority" name="priority"><option value="normal">Santai</option><option value="medium">Penting</option><option value="high">Mendesak</option></select>
+            <label class="field-label" for="task-notes">Catatan <span class="optional-label">opsional</span></label>
+            <textarea class="text-input notes-input" id="task-notes" name="notes" rows="3" placeholder="Tulis detail kecil agar tidak terlupa…" maxlength="240"></textarea>
+            <div class="form-actions"><button class="primary-button" id="save-task-button" type="submit"><span aria-hidden="true">＋</span> Simpan agenda</button><button class="cancel-button" id="cancel-edit-button" type="button" hidden>Batal</button></div>
+            <p class="form-feedback" id="form-feedback" role="status"></p>
+          </form>
+        </section>
+        <section class="note-card" aria-labelledby="note-title">
+          <div class="note-topline"><span class="sparkle" aria-hidden="true">✳</span><span class="eyebrow">CATATAN KECIL</span></div>
+          <h2 id="note-title">Pelan-pelan<br>asal selesai.</h2>
+          <p>Fokus pada langkah berikutnya, bukan seluruh perjalanan.</p>
+          <div class="note-footer"><span>SELA REMINDER</span><span aria-hidden="true">↗</span></div>
+        </section>
+      </aside>
+    </div>
+  </main>
+  <footer class="site-footer"><span>Sela <span aria-hidden="true">✳</span> tugas praktikum PAW · Pertemuan 2</span><span>Sahal alvin zairy · 124140167</span></footer>
+</body>
+</html>
