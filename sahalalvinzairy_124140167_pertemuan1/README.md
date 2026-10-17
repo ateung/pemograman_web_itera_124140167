@@ -3,7 +3,7 @@
 ## Identitas
 - **Nama Lengkap:** Sahal alvin zairy
 - **NIM:** 124140167
-- **Kelas Praktikum:** [Kelas]
+- **Kelas Praktikum:** RA
 - **Pertemuan:** 1 — JavaScript Dasar
 
 ## Deskripsi Aplikasi
